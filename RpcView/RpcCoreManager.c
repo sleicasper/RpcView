@@ -29,7 +29,7 @@ RpcCore_T	gRpcCoreManager =
     0,
     //"Generic RpcCore Manager",
     FALSE,
-	FALSE,
+    TRUE,
     &RpcCoreInit,
     &RpcCoreUninit,
     &RpcCoreGetProcessInfo,
