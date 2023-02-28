@@ -13,30 +13,6 @@
 #define PDB_MAX_SYMBOL_SIZE	1000
 
 
-//Only for PDB2.0 format!
-struct CV_INFO_PDB20{
-  DWORD	CvSignature;
-  DWORD	Offset;
-  DWORD Signature;
-  DWORD Age;
-  BYTE PdbFileName[MAX_PATH];
-};
-
-//Only for PDB7.0 format!
-typedef struct _CV_INFO_PDB70{
-	DWORD	CvSignature;
-	GUID	Signature;
-	DWORD	Age;
-	BYTE	PdbFileName[MAX_PATH];
-} CV_INFO_PDB70;
-
-
-typedef struct _PdbCtxt_T{
-	HANDLE	hProcess;
-	void*	pModuleBase;
-	ULONG	ModuleSize;
-}PdbCtxt_T;
-
 //------------------------------------------------------------------------------
 BOOL WINAPI GetModulePdbInfo(HANDLE hProcess, VOID* pModuleBase, CV_INFO_PDB70* pPdb70Info)
 {
