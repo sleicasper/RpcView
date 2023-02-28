@@ -118,7 +118,7 @@ BOOL download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info)
                     Pdb70Info->PdbFileName
                     );
             // check exist
-            if (_is_file_win(pPdbPath))
+            if (_is_file_win((char*)pPdbPath))
             {
                 return TRUE;
             }
@@ -161,7 +161,7 @@ BOOL download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info)
                 Pdb70Info->Age,
                 Pdb70Info->PdbFileName
                 );
-        ensure_directory_create(pPdbPath);
+        ensure_directory_create((char*)pPdbPath);
         HRESULT hr = URLDownloadToFileA(0, downloadurl, (LPCSTR)pPdbPath, 0, NULL);
         if (hr != S_OK)
         {
