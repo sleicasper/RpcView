@@ -77,6 +77,7 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
             return FALSE;
         }
     }
+    MessageBox(NULL, "hello", "goood", MB_OK);
     std::string NtSymbolPathStr = NtSymbolPath;
     std::string ntsymbolprefix = NtSymbolPathStr.substr(0, 4);
     if (_stricmp(ntsymbolprefix.c_str(), "SRV*"))
