@@ -67,7 +67,7 @@ void ensure_directory_create(std::string aPath)
     }
 }
 
-BOOL download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info)
+EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info)
 {
     CHAR			NtSymbolPath[MAX_PATH] = { 0 };
     if (GetEnvironmentVariableA("RpcViewSymbolPath", NtSymbolPath, sizeof(NtSymbolPath)) == 0)

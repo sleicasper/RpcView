@@ -27,5 +27,5 @@ typedef struct _PdbCtxt_T{
 	ULONG	ModuleSize;
 }PdbCtxt_T;
 
-BOOL download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info);
+EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info);
 #endif
