@@ -77,7 +77,6 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
             return FALSE;
         }
     }
-    MessageBox(NULL, "hello", "goood", MB_OK);
     std::string NtSymbolPathStr = NtSymbolPath;
     std::string ntsymbolprefix = NtSymbolPathStr.substr(0, 4);
     if (_stricmp(ntsymbolprefix.c_str(), "SRV*"))
@@ -88,6 +87,7 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
     std::vector<std::string> path_vec = split2vec(NtSymbolPathStr, '*');
     std::string saving_prefix;
     std::string symserver_prefix;
+    MessageBox(NULL, "hello", "goood", MB_OK);
 
     for (auto iter : path_vec)
     {
@@ -119,12 +119,15 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
                     Pdb70Info->PdbFileName
                     );
             // check exist
+            MessageBox(NULL, "old: ", (const char*)pPdbPath, MB_OK);
             if (_is_file_win((char*)pPdbPath))
             {
                 return TRUE;
             }
         }
     }
+    MessageBox(NULL, "symserver: ", (const char*)symserver_prefix.c_str(), MB_OK);
+    MessageBox(NULL, "saving_prefix: ", (const char*)saving_prefix.c_str(), MB_OK);
     if (symserver_prefix.size() > 0 && saving_prefix.size() > 0)
     {
         CHAR downloadurl[MAX_PATH];
@@ -162,15 +165,19 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
                 Pdb70Info->Age,
                 Pdb70Info->PdbFileName
                 );
+        MessageBox(NULL, "downloadurl: ", (const char*)downloadurl, MB_OK);
+        MessageBox(NULL, "pPdbPath: ", (const char*)pPdbPath, MB_OK);
         ensure_directory_create((char*)pPdbPath);
         HRESULT hr = URLDownloadToFileA(0, downloadurl, (LPCSTR)pPdbPath, 0, NULL);
         if (hr != S_OK)
         {
             return FALSE;
         }
+        MessageBox(NULL, "status: ", (const char*)"ok", MB_OK);
         // check exist
         if (_is_file_win((CHAR*)pPdbPath))
         {
+            MessageBox(NULL, "status: ", (const char*)"very ok", MB_OK);
             return TRUE;
         }
 
