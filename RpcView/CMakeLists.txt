@@ -27,7 +27,7 @@ add_executable(
     ../RpcCommon/Misc.c
     ../RpcCommon/ntdll.c
     Pdb.c
-    Pdb_Download.c
+    Pdb_Download.cpp
     ProceduresWidget.cpp
     ProcessInfoWidget.cpp
     ProcessWidget.cpp
