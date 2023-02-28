@@ -162,13 +162,13 @@ BOOL download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB70* Pdb70Info)
                 Pdb70Info->PdbFileName
                 );
         ensure_directory_create(pPdbPath);
-        HRESULT hr = URLDownloadToFileA(0, downloadurl, pPdbPath, 0, NULL);
+        HRESULT hr = URLDownloadToFileA(0, downloadurl, (LPCSTR)pPdbPath, 0, NULL);
         if (hr != S_OK)
         {
             return FALSE;
         }
         // check exist
-        if (_is_file_win(pPdbPath))
+        if (_is_file_win((CHAR*)pPdbPath))
         {
             return TRUE;
         }
