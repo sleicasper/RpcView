@@ -87,7 +87,6 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
     std::vector<std::string> path_vec = split2vec(NtSymbolPathStr, '*');
     std::string saving_prefix;
     std::string symserver_prefix;
-    MessageBox(NULL, "hello", "goood", MB_OK);
 
     for (auto iter : path_vec)
     {
@@ -119,15 +118,12 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
                     Pdb70Info->PdbFileName
                     );
             // check exist
-            MessageBox(NULL, (const char*)pPdbPath, "old:", MB_OK);
             if (_is_file_win((char*)pPdbPath))
             {
                 return TRUE;
             }
         }
     }
-    MessageBox(NULL, (const char*)symserver_prefix.c_str(), "symserver_prefix: ", MB_OK);
-    MessageBox(NULL, (const char*)saving_prefix.c_str(), "saving_prefix: ", MB_OK);
     if (symserver_prefix.size() > 0 && saving_prefix.size() > 0)
     {
         CHAR downloadurl[MAX_PATH];
@@ -165,19 +161,15 @@ EXTERN_C BOOL WINAPI download_Pdb(UCHAR* pPdbPath, UINT PdbPathSize, CV_INFO_PDB
                 Pdb70Info->Age,
                 Pdb70Info->PdbFileName
                 );
-        MessageBox(NULL, (const char*)downloadurl, "downloadurl: ", MB_OK);
-        MessageBox(NULL, (const char*)pPdbPath, "pPdbPath: ", MB_OK);
         ensure_directory_create((char*)pPdbPath);
         HRESULT hr = URLDownloadToFileA(0, downloadurl, (LPCSTR)pPdbPath, 0, NULL);
         if (hr != S_OK)
         {
             return FALSE;
         }
-        MessageBox(NULL, (const char*)"ok", "status", MB_OK);
         // check exist
         if (_is_file_win((CHAR*)pPdbPath))
         {
-            MessageBox(NULL, (const char*)"very ok", "static", MB_OK);
             return TRUE;
         }
 
